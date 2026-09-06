@@ -63,7 +63,7 @@ export default function MusicPlayer() {
 
   return (
     <motion.div
-      className="absolute bottom-16 left-1/2 z-20 px-4 w-full max-w-md"
+      className="absolute bottom-24 left-1/2 z-20 px-3 w-full max-w-sm"
       style={{ translateX: '-50%' }}
       initial={{ opacity: 0, y: 40, scale: 0.95 }}
       animate={{ opacity: 1, y: 0,  scale: 1 }}
@@ -94,7 +94,7 @@ export default function MusicPlayer() {
       <div
         className="relative rounded-[22px] overflow-hidden"
         style={{
-          minWidth: 'clamp(280px, 36vw, 400px)',
+          minWidth: 'clamp(240px, 32vw, 380px)',
           /* true liquid-glass layering */
           background: 'linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 50%, rgba(168,85,247,0.06) 100%)',
           backdropFilter: 'blur(32px) saturate(180%)',
