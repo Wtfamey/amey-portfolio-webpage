@@ -55,7 +55,7 @@ function WorkCard({
   scale: MotionValue<number>;
   serviceLabel: string;
 }) {
-  const top = 90 + index * 24;
+  const top = 100 + index * 28;
 
   return (
     <motion.div style={{ scale, top }} className="sticky">
@@ -182,8 +182,8 @@ function ServiceGroup({ service }: { service: typeof serviceWork[0] }) {
     // pb-40 clears the last sticky card before the next group header appears
     <div
       id={`work-${service.id}`}
-      className="pt-20 md:pt-28 pb-40 md:pb-56"
-      style={{ scrollMarginTop: '80px' }}
+      className="pt-32 md:pt-40 pb-48 md:pb-64"
+      style={{ scrollMarginTop: '120px' }}
     >
       {/* Service group header */}
       <FadeIn y={30} duration={0.7}>
@@ -215,7 +215,7 @@ function ServiceGroup({ service }: { service: typeof serviceWork[0] }) {
       <div
         ref={containerRef}
         className="relative max-w-5xl mx-auto"
-        style={{ height: `${n * 750}px` }}
+        style={{ height: `${n * 850}px` }}
       >
         {service.works.map((item, i) => (
           <WorkCard

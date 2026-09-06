@@ -34,53 +34,71 @@ const milestones = [
 
 function TimelineItem({ item, index }: { item: typeof milestones[0]; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.9', 'start 0.3'] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.85', 'start 0.25'] });
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const x = useTransform(scrollYProgress, [0, 1], [index % 2 === 0 ? -40 : 40, 0]);
+  const x = useTransform(scrollYProgress, [0, 1], [index % 2 === 0 ? -50 : 50, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1]);
 
   return (
     <motion.div
       ref={ref}
-      style={{ opacity, x }}
+      style={{ opacity, x, scale }}
       className={`flex gap-6 md:gap-10 items-start ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse text-right'}`}
     >
-      {/* Year bubble */}
+      {/* Year bubble with glow */}
       <div className="shrink-0 flex flex-col items-center gap-2">
-        <div
-          className="flex items-center justify-center rounded-full font-black text-xs tracking-wider"
+        <motion.div
+          className="flex items-center justify-center rounded-full font-black text-xs tracking-wider relative"
           style={{
-            width: 52, height: 52,
-            background: 'linear-gradient(135deg, rgba(168,85,247,0.2), rgba(236,72,153,0.15))',
-            border: '1px solid rgba(168,85,247,0.35)',
+            width: 56, height: 56,
+            background: 'linear-gradient(135deg, rgba(168,85,247,0.25), rgba(236,72,153,0.18))',
+            border: '1.5px solid rgba(168,85,247,0.4)',
             color: '#c084fc',
-            fontSize: '0.65rem',
-            letterSpacing: '0.1em',
+            fontSize: '0.68rem',
+            letterSpacing: '0.12em',
+            boxShadow: '0 0 24px rgba(168,85,247,0.3), inset 0 1px 0 rgba(255,255,255,0.1)',
           }}
+          whileHover={{ scale: 1.1, boxShadow: '0 0 32px rgba(168,85,247,0.5)' }}
+          transition={{ duration: 0.3 }}
         >
           {item.year}
-        </div>
+        </motion.div>
         {index < milestones.length - 1 && (
-          <div className="w-px flex-1 min-h-[48px]" style={{ background: 'linear-gradient(to bottom, rgba(168,85,247,0.3), transparent)' }} />
+          <div className="w-px flex-1 min-h-[56px]" style={{ background: 'linear-gradient(to bottom, rgba(168,85,247,0.4), rgba(236,72,153,0.2), transparent)' }} />
         )}
       </div>
 
-      {/* Content */}
-      <div className="pb-10 md:pb-14">
-        <p
-          className="font-bold uppercase tracking-wider mb-1"
+      {/* Content with glass card */}
+      <div className="pb-12 md:pb-16 flex-1">
+        <motion.div
+          className="p-5 rounded-2xl"
           style={{
-            fontSize: 'clamp(0.8rem, 1.4vw, 1rem)',
-            background: 'linear-gradient(135deg, #e879f9, #a855f7)',
-            backgroundClip: 'text',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            background: 'linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
+            border: '1px solid rgba(168,85,247,0.12)',
+            backdropFilter: 'blur(8px)',
           }}
+          whileHover={{
+            background: 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
+            borderColor: 'rgba(168,85,247,0.25)',
+          }}
+          transition={{ duration: 0.3 }}
         >
-          {item.label}
-        </p>
-        <p className="text-white/50 font-light leading-relaxed" style={{ fontSize: 'clamp(0.82rem, 1.3vw, 1rem)' }}>
-          {item.body}
-        </p>
+          <p
+            className="font-bold uppercase tracking-wider mb-2"
+            style={{
+              fontSize: 'clamp(0.85rem, 1.5vw, 1.1rem)',
+              background: 'linear-gradient(135deg, #e879f9 0%, #a855f7 50%, #6366f1 100%)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            {item.label}
+          </p>
+          <p className="text-white/45 font-light leading-relaxed" style={{ fontSize: 'clamp(0.85rem, 1.3vw, 1.05rem)' }}>
+            {item.body}
+          </p>
+        </motion.div>
       </div>
     </motion.div>
   );
@@ -133,78 +151,104 @@ export default function Journey() {
             ))}
           </div>
 
-          {/* Photo stack — parallax */}
-          <div className="relative hidden lg:block" style={{ minHeight: 600 }}>
+          {/* Photo stack — parallax with enhanced styling */}
+          <div className="relative hidden lg:block" style={{ minHeight: 650 }}>
+
+            {/* Ambient glow behind photos */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: 'radial-gradient(ellipse 80% 60% at 30% 40%, rgba(168,85,247,0.08) 0%, transparent 50%), radial-gradient(ellipse 60% 50% at 70% 60%, rgba(236,72,153,0.06) 0%, transparent 50%)',
+              }}
+              aria-hidden="true"
+            />
 
             {/* Working photo */}
             <motion.div
               style={{ y: workingY }}
               className="absolute left-0 top-0 z-10"
             >
-              <div
+              <motion.div
                 className="overflow-hidden rounded-3xl"
                 style={{
-                  width: 'clamp(200px, 22vw, 300px)',
-                  border: '1px solid rgba(168,85,247,0.2)',
-                  background: 'rgba(168,85,247,0.04)',
-                  boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
+                  width: 'clamp(220px, 24vw, 320px)',
+                  border: '1.5px solid rgba(168,85,247,0.25)',
+                  background: 'rgba(168,85,247,0.06)',
+                  boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 40px rgba(168,85,247,0.15)',
                 }}
+                whileHover={{ scale: 1.03, boxShadow: '0 40px 100px rgba(0,0,0,0.7), 0 0 50px rgba(168,85,247,0.25)' }}
+                transition={{ duration: 0.4 }}
               >
                 <img
                   src={ameyWorking}
                   alt="Amey working on his laptop"
                   className="w-full h-auto block"
-                  style={{ filter: 'drop-shadow(0 8px 30px rgba(168,85,247,0.15))' }}
+                  style={{ filter: 'drop-shadow(0 12px 40px rgba(168,85,247,0.2))' }}
                 />
-              </div>
-              <p className="text-white/20 text-[10px] uppercase tracking-widest mt-3 font-medium text-center">
+              </motion.div>
+              <motion.p 
+                className="text-white/25 text-[10px] uppercase tracking-widest mt-4 font-medium text-center"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
                 Deep in the code
-              </p>
+              </motion.p>
             </motion.div>
 
             {/* Dog-walking photo */}
             <motion.div
               style={{ y: dogY }}
-              className="absolute right-0 top-40 z-20"
+              className="absolute right-0 top-48 z-20"
             >
-              <div
+              <motion.div
                 className="overflow-hidden rounded-3xl"
                 style={{
-                  width: 'clamp(180px, 20vw, 270px)',
-                  border: '1px solid rgba(236,72,153,0.2)',
-                  background: 'rgba(236,72,153,0.03)',
-                  boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
+                  width: 'clamp(200px, 22vw, 290px)',
+                  border: '1.5px solid rgba(236,72,153,0.25)',
+                  background: 'rgba(236,72,153,0.05)',
+                  boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 40px rgba(236,72,153,0.12)',
                 }}
+                whileHover={{ scale: 1.03, boxShadow: '0 40px 100px rgba(0,0,0,0.7), 0 0 50px rgba(236,72,153,0.2)' }}
+                transition={{ duration: 0.4 }}
               >
                 <img
                   src={ameyDog}
                   alt="Amey walking his dog Flake"
                   className="w-full h-auto block"
-                  style={{ filter: 'drop-shadow(0 8px 30px rgba(236,72,153,0.12))' }}
+                  style={{ filter: 'drop-shadow(0 12px 40px rgba(236,72,153,0.15))' }}
                 />
-              </div>
-              <p className="text-white/20 text-[10px] uppercase tracking-widest mt-3 font-medium text-center">
+              </motion.div>
+              <motion.p 
+                className="text-white/25 text-[10px] uppercase tracking-widest mt-4 font-medium text-center"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
                 With Flake
-              </p>
+              </motion.p>
             </motion.div>
 
-            {/* Floating label */}
+            {/* Floating label with glass effect */}
             <motion.div
-              className="absolute bottom-10 left-8 z-30"
-              initial={{ opacity: 0, y: 20 }}
+              className="absolute bottom-12 left-8 z-30"
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.6, duration: 0.7 }}
+              transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               <div
-                className="px-4 py-2 rounded-full"
+                className="px-5 py-2.5 rounded-full"
                 style={{
-                  background: 'rgba(14,14,18,0.85)',
-                  border: '1px solid rgba(168,85,247,0.2)',
-                  backdropFilter: 'blur(12px)',
+                  background: 'linear-gradient(135deg, rgba(14,14,18,0.9) 0%, rgba(14,14,18,0.7) 100%)',
+                  border: '1.5px solid rgba(168,85,247,0.25)',
+                  backdropFilter: 'blur(16px) saturate(180%)',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.4), 0 0 24px rgba(168,85,247,0.15)',
                 }}
               >
-                <p className="text-white/50 text-[10px] uppercase tracking-widest font-medium">
+                <p className="text-white/40 text-[10px] uppercase tracking-widest font-medium">
                   Student → Builder → Developer
                 </p>
               </div>
@@ -212,14 +256,24 @@ export default function Journey() {
           </div>
         </div>
 
-        {/* Mobile photos — shown below timeline on small screens */}
+        {/* Mobile photos — shown below timeline on small screens with enhanced styling */}
         <div className="flex gap-4 mt-12 lg:hidden">
-          <div className="flex-1 overflow-hidden rounded-2xl" style={{ border: '1px solid rgba(168,85,247,0.15)' }}>
+          <motion.div 
+            className="flex-1 overflow-hidden rounded-2xl"
+            style={{ border: '1.5px solid rgba(168,85,247,0.2)', boxShadow: '0 16px 40px rgba(0,0,0,0.4)' }}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
             <img src={ameyWorking} alt="Amey working" className="w-full h-auto block" />
-          </div>
-          <div className="flex-1 overflow-hidden rounded-2xl" style={{ border: '1px solid rgba(236,72,153,0.15)' }}>
+          </motion.div>
+          <motion.div 
+            className="flex-1 overflow-hidden rounded-2xl"
+            style={{ border: '1.5px solid rgba(236,72,153,0.2)', boxShadow: '0 16px 40px rgba(0,0,0,0.4)' }}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
             <img src={ameyDog} alt="Amey with Flake" className="w-full h-auto block" />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
