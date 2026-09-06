@@ -7,10 +7,10 @@ import track3 from '../assets/PARTYNEXTDOOR - Recognize (feat. Drake) [Official 
 import track4 from '../assets/Yeat - Purpose General.mp3';
 
 const TRACKS = [
+  { title: 'Purpose General', artist: 'Yeat',                  src: track4 },
   { title: 'Bad Trip',        artist: 'Unknown',               src: track1 },
   { title: 'Worry',           artist: 'LONOWN × riserayss',    src: track2 },
   { title: 'Recognize',       artist: 'PARTYNEXTDOOR ft. Drake', src: track3 },
-  { title: 'Purpose General', artist: 'Yeat',                  src: track4 },
 ];
 
 function fmt(s: number) {
