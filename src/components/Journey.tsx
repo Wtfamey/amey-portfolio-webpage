@@ -182,35 +182,19 @@ export default function Journey() {
                   className="w-full h-auto block rounded-3xl"
                   style={{ filter: 'drop-shadow(0 12px 40px rgba(168,85,247,0.2))' }}
                 />
-                {/* Outline around PNG */}
-                <motion.div
-                  className="absolute inset-0 rounded-3xl pointer-events-none"
-                  style={{
-                    border: '2px solid rgba(168,85,247,0.4)',
-                    boxShadow: 'inset 0 0 20px rgba(168,85,247,0.1)',
-                  }}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                />
               </motion.div>
-              {/* Curly arrow with cursive text */}
+              {/* Text label */}
               <motion.div 
-                className="flex items-center gap-2 mt-4"
+                className="mt-4"
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(168,85,247,0.6)" strokeWidth="2" strokeLinecap="round">
-                  <path d="M7 17L17 7M17 7H7M17 7V17" />
-                </svg>
                 <p 
-                  className="text-white/40 text-sm"
-                  style={{ fontFamily: 'cursive, Comic Sans MS, Chalkboard SE, sans-serif' }}
+                  className="text-white/40 text-sm font-light tracking-wide"
                 >
-                  Deep in the code
+                  this guy works real hard (just prompting)
                 </p>
               </motion.div>
             </motion.div>
@@ -234,36 +218,20 @@ export default function Journey() {
                   className="w-full h-auto block rounded-3xl"
                   style={{ filter: 'drop-shadow(0 12px 40px rgba(236,72,153,0.15))' }}
                 />
-                {/* Outline around PNG */}
-                <motion.div
-                  className="absolute inset-0 rounded-3xl pointer-events-none"
-                  style={{
-                    border: '2px solid rgba(236,72,153,0.4)',
-                    boxShadow: 'inset 0 0 20px rgba(236,72,153,0.1)',
-                  }}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                />
               </motion.div>
-              {/* Curly arrow with cursive text */}
+              {/* Text label */}
               <motion.div 
-                className="flex items-center gap-2 mt-4 justify-end"
+                className="mt-4 text-right"
                 initial={{ opacity: 0, x: 10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
                 <p 
-                  className="text-white/40 text-sm"
-                  style={{ fontFamily: 'cursive, Comic Sans MS, Chalkboard SE, sans-serif' }}
+                  className="text-white/40 text-sm font-light tracking-wide"
                 >
-                  With Flake
+                  meet flake!!!
                 </p>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(236,72,153,0.6)" strokeWidth="2" strokeLinecap="round">
-                  <path d="M7 17L17 7M17 7H7M17 7V17" />
-                </svg>
               </motion.div>
             </motion.div>
 
@@ -292,78 +260,44 @@ export default function Journey() {
           </div>
         </div>
 
-        {/* Mobile photos — shown below timeline on small screens with outline styling */}
-        <div className="grid grid-cols-2 gap-4 mt-12 lg:hidden">
+        {/* Mobile photos — overlapping like desktop layout */}
+        <div className="mt-12 lg:hidden relative" style={{ minHeight: 450 }}>
           <motion.div 
-            className="relative"
+            className="absolute left-0 top-0"
+            style={{ width: 'clamp(240px, 65vw, 300px)' }}
             whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.4 }}
           >
-            <img src={ameyWorking} alt="Amey working" className="w-full h-auto block rounded-2xl" />
-            <motion.div
-              className="absolute inset-0 rounded-2xl pointer-events-none"
-              style={{
-                border: '2px solid rgba(168,85,247,0.4)',
-                boxShadow: 'inset 0 0 15px rgba(168,85,247,0.1)',
-              }}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-            />
+            <img src={ameyWorking} alt="Amey working" className="w-full h-auto block rounded-3xl" style={{ filter: 'drop-shadow(0 12px 40px rgba(168,85,247,0.2))' }} />
             <motion.div 
-              className="flex items-center gap-1 mt-2"
-              initial={{ opacity: 0, x: -5 }}
+              className="mt-4"
+              initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(168,85,247,0.6)" strokeWidth="2" strokeLinecap="round">
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
-              <p 
-                className="text-white/40 text-xs"
-                style={{ fontFamily: 'cursive, Comic Sans MS, Chalkboard SE, sans-serif' }}
-              >
-                Deep in the code
+              <p className="text-white/40 text-sm font-light tracking-wide">
+                this guy works real hard (just prompting)
               </p>
             </motion.div>
           </motion.div>
           <motion.div 
-            className="relative"
+            className="absolute right-0 top-32"
+            style={{ width: 'clamp(220px, 60vw, 280px)' }}
             whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.4 }}
           >
-            <img src={ameyDog} alt="Amey with Flake" className="w-full h-auto block rounded-2xl" />
-            <motion.div
-              className="absolute inset-0 rounded-2xl pointer-events-none"
-              style={{
-                border: '2px solid rgba(236,72,153,0.4)',
-                boxShadow: 'inset 0 0 15px rgba(236,72,153,0.1)',
-              }}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-            />
+            <img src={ameyDog} alt="Amey with Flake" className="w-full h-auto block rounded-3xl" style={{ filter: 'drop-shadow(0 12px 40px rgba(236,72,153,0.15))' }} />
             <motion.div 
-              className="flex items-center gap-1 mt-2 justify-end"
-              initial={{ opacity: 0, x: 5 }}
+              className="mt-4 text-right"
+              initial={{ opacity: 0, x: 10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              <p 
-                className="text-white/40 text-xs"
-                style={{ fontFamily: 'cursive, Comic Sans MS, Chalkboard SE, sans-serif' }}
-              >
-                With Flake
+              <p className="text-white/40 text-sm font-light tracking-wide">
+                meet flake!!!
               </p>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(236,72,153,0.6)" strokeWidth="2" strokeLinecap="round">
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
             </motion.div>
           </motion.div>
         </div>
