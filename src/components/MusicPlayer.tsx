@@ -63,7 +63,7 @@ export default function MusicPlayer() {
 
   return (
     <motion.div
-      className="absolute bottom-10 left-1/2 z-20"
+      className="absolute bottom-16 left-1/2 z-20 px-4 w-full max-w-md"
       style={{ translateX: '-50%' }}
       initial={{ opacity: 0, y: 40, scale: 0.95 }}
       animate={{ opacity: 1, y: 0,  scale: 1 }}

@@ -256,23 +256,81 @@ export default function Journey() {
           </div>
         </div>
 
-        {/* Mobile photos — shown below timeline on small screens with enhanced styling */}
-        <div className="flex gap-4 mt-12 lg:hidden">
+        {/* Mobile photos — shown below timeline on small screens with enhanced interactive styling */}
+        <div className="grid grid-cols-2 gap-4 mt-12 lg:hidden">
           <motion.div 
-            className="flex-1 overflow-hidden rounded-2xl"
-            style={{ border: '1.5px solid rgba(168,85,247,0.2)', boxShadow: '0 16px 40px rgba(0,0,0,0.4)' }}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
+            className="relative overflow-hidden rounded-2xl"
+            style={{ border: '1.5px solid rgba(168,85,247,0.25)', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' }}
+            whileHover={{ scale: 1.05, boxShadow: '0 25px 60px rgba(168,85,247,0.3)' }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            <img src={ameyWorking} alt="Amey working" className="w-full h-auto block" />
+            <motion.div 
+              className="absolute inset-0"
+              style={{ background: 'linear-gradient(to top, rgba(168,85,247,0.15) 0%, transparent 60%)' }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            />
+            <img src={ameyWorking} alt="Amey working" className="w-full h-auto block relative z-10" />
+            <motion.div 
+              className="absolute bottom-3 left-3 right-3 z-20"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              <div
+                className="px-3 py-1.5 rounded-full"
+                style={{
+                  background: 'rgba(14,14,18,0.85)',
+                  border: '1px solid rgba(168,85,247,0.3)',
+                  backdropFilter: 'blur(8px)',
+                }}
+              >
+                <p className="text-white/60 text-[9px] uppercase tracking-widest font-medium text-center">
+                  Deep in the code
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
           <motion.div 
-            className="flex-1 overflow-hidden rounded-2xl"
-            style={{ border: '1.5px solid rgba(236,72,153,0.2)', boxShadow: '0 16px 40px rgba(0,0,0,0.4)' }}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
+            className="relative overflow-hidden rounded-2xl"
+            style={{ border: '1.5px solid rgba(236,72,153,0.25)', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' }}
+            whileHover={{ scale: 1.05, boxShadow: '0 25px 60px rgba(236,72,153,0.3)' }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            <img src={ameyDog} alt="Amey with Flake" className="w-full h-auto block" />
+            <motion.div 
+              className="absolute inset-0"
+              style={{ background: 'linear-gradient(to top, rgba(236,72,153,0.15) 0%, transparent 60%)' }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            />
+            <img src={ameyDog} alt="Amey with Flake" className="w-full h-auto block relative z-10" />
+            <motion.div 
+              className="absolute bottom-3 left-3 right-3 z-20"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+            >
+              <div
+                className="px-3 py-1.5 rounded-full"
+                style={{
+                  background: 'rgba(14,14,18,0.85)',
+                  border: '1px solid rgba(236,72,153,0.3)',
+                  backdropFilter: 'blur(8px)',
+                }}
+              >
+                <p className="text-white/60 text-[9px] uppercase tracking-widest font-medium text-center">
+                  With Flake
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

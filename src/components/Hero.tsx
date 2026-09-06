@@ -116,7 +116,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.72 }}
         >
-          {['Developer', 'AI / ML', 'Builder'].map((tag) => (
+          {['Developer', 'AI / ML', 'Consultant'].map((tag) => (
             <span
               key={tag}
               className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-medium px-3 py-1.5 rounded-full text-white/70"
