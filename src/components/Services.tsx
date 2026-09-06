@@ -6,26 +6,31 @@ const services = [
     number: '01',
     title: 'FULL-STACK DEVELOPMENT',
     description: 'Building responsive, scalable web applications and backend systems for real-world business requirements.',
+    workId: 'work-fullstack',
   },
   {
     number: '02',
     title: 'AI / MACHINE LEARNING',
     description: 'Building AI-powered applications, intelligent workflows, automation systems and ML solutions.',
+    workId: 'work-aiml',
   },
   {
     number: '03',
     title: 'WEB DESIGN & DEVELOPMENT',
     description: 'Designing and developing modern websites focused on performance, usability and strong visual identity.',
+    workId: 'work-webdesign',
   },
   {
     number: '04',
     title: 'SOFTWARE & SaaS',
     description: 'Turning product ideas into functional software platforms with authentication, dashboards, APIs and databases.',
+    workId: 'work-saas',
   },
   {
     number: '05',
     title: 'CLIENT SOLUTIONS',
     description: 'Working directly with businesses to understand their requirements and deliver practical technology solutions.',
+    workId: 'work-client',
   },
 ];
 
@@ -102,12 +107,41 @@ export default function Services() {
                   >
                     {service.title}
                   </h3>
-                  <p
-                    className="font-light leading-relaxed text-right sm:max-w-xs md:max-w-sm"
-                    style={{ color: 'rgba(12,12,12,0.5)', fontSize: 'clamp(0.82rem, 1.1vw, 0.95rem)' }}
-                  >
-                    {service.description}
-                  </p>
+                  <div className="flex flex-col sm:items-end gap-2 sm:max-w-xs md:max-w-sm shrink-0">
+                    <p
+                      className="font-light leading-relaxed"
+                      style={{ color: 'rgba(12,12,12,0.5)', fontSize: 'clamp(0.82rem, 1.1vw, 0.95rem)' }}
+                    >
+                      {service.description}
+                    </p>
+                    <a
+                      href={`#${service.workId}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById(service.workId)?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="inline-flex items-center gap-1.5 no-underline font-semibold uppercase tracking-widest transition-all duration-200 hover:gap-3"
+                      style={{
+                        fontSize: 'clamp(0.6rem, 0.9vw, 0.72rem)',
+                        background: 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)',
+                        backgroundClip: 'text',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                      }}
+                      aria-label={`View ${service.title} work`}
+                    >
+                      VIEW WORK
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="url(#arrow-grad)" strokeWidth="2.5" strokeLinecap="round">
+                        <defs>
+                          <linearGradient id="arrow-grad" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stopColor="#a855f7"/>
+                            <stop offset="100%" stopColor="#6366f1"/>
+                          </linearGradient>
+                        </defs>
+                        <polyline points="9 18 15 12 9 6"/>
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
               {i === services.length - 1 && (

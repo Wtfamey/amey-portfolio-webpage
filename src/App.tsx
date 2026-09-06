@@ -1,9 +1,10 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
+import Journey from './components/Journey';
 import About from './components/About';
 import Services from './components/Services';
-import Projects from './components/Projects';
+import ServiceWork from './components/ServiceWork';
 import Contact from './components/Contact';
 
 export default function App() {
@@ -12,9 +13,10 @@ export default function App() {
       <Navbar />
       <Hero />
       <Marquee />
+      <Journey />
       <About />
       <Services />
-      <Projects />
+      <ServiceWork />
       <Contact />
     </div>
   );
