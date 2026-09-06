@@ -169,32 +169,50 @@ export default function Journey() {
               className="absolute left-0 top-0 z-10"
             >
               <motion.div
-                className="overflow-hidden rounded-3xl"
+                className="relative"
                 style={{
-                  width: 'clamp(220px, 24vw, 320px)',
-                  border: '1.5px solid rgba(168,85,247,0.25)',
-                  background: 'rgba(168,85,247,0.06)',
-                  boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 40px rgba(168,85,247,0.15)',
+                  width: 'clamp(260px, 28vw, 360px)',
                 }}
-                whileHover={{ scale: 1.03, boxShadow: '0 40px 100px rgba(0,0,0,0.7), 0 0 50px rgba(168,85,247,0.25)' }}
+                whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.4 }}
               >
                 <img
                   src={ameyWorking}
                   alt="Amey working on his laptop"
-                  className="w-full h-auto block"
+                  className="w-full h-auto block rounded-3xl"
                   style={{ filter: 'drop-shadow(0 12px 40px rgba(168,85,247,0.2))' }}
                 />
+                {/* Outline around PNG */}
+                <motion.div
+                  className="absolute inset-0 rounded-3xl pointer-events-none"
+                  style={{
+                    border: '2px solid rgba(168,85,247,0.4)',
+                    boxShadow: 'inset 0 0 20px rgba(168,85,247,0.1)',
+                  }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3, duration: 0.6 }}
+                />
               </motion.div>
-              <motion.p 
-                className="text-white/25 text-[10px] uppercase tracking-widest mt-4 font-medium text-center"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+              {/* Curly arrow with cursive text */}
+              <motion.div 
+                className="flex items-center gap-2 mt-4"
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.6 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
               >
-                Deep in the code
-              </motion.p>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(168,85,247,0.6)" strokeWidth="2" strokeLinecap="round">
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
+                </svg>
+                <p 
+                  className="text-white/40 text-sm"
+                  style={{ fontFamily: 'cursive, Comic Sans MS, Chalkboard SE, sans-serif' }}
+                >
+                  Deep in the code
+                </p>
+              </motion.div>
             </motion.div>
 
             {/* Dog-walking photo */}
@@ -203,32 +221,50 @@ export default function Journey() {
               className="absolute right-0 top-48 z-20"
             >
               <motion.div
-                className="overflow-hidden rounded-3xl"
+                className="relative"
                 style={{
-                  width: 'clamp(200px, 22vw, 290px)',
-                  border: '1.5px solid rgba(236,72,153,0.25)',
-                  background: 'rgba(236,72,153,0.05)',
-                  boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 40px rgba(236,72,153,0.12)',
+                  width: 'clamp(240px, 26vw, 330px)',
                 }}
-                whileHover={{ scale: 1.03, boxShadow: '0 40px 100px rgba(0,0,0,0.7), 0 0 50px rgba(236,72,153,0.2)' }}
+                whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.4 }}
               >
                 <img
                   src={ameyDog}
                   alt="Amey walking his dog Flake"
-                  className="w-full h-auto block"
+                  className="w-full h-auto block rounded-3xl"
                   style={{ filter: 'drop-shadow(0 12px 40px rgba(236,72,153,0.15))' }}
                 />
+                {/* Outline around PNG */}
+                <motion.div
+                  className="absolute inset-0 rounded-3xl pointer-events-none"
+                  style={{
+                    border: '2px solid rgba(236,72,153,0.4)',
+                    boxShadow: 'inset 0 0 20px rgba(236,72,153,0.1)',
+                  }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                />
               </motion.div>
-              <motion.p 
-                className="text-white/25 text-[10px] uppercase tracking-widest mt-4 font-medium text-center"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+              {/* Curly arrow with cursive text */}
+              <motion.div 
+                className="flex items-center gap-2 mt-4 justify-end"
+                initial={{ opacity: 0, x: 10 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.6 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
               >
-                With Flake
-              </motion.p>
+                <p 
+                  className="text-white/40 text-sm"
+                  style={{ fontFamily: 'cursive, Comic Sans MS, Chalkboard SE, sans-serif' }}
+                >
+                  With Flake
+                </p>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(236,72,153,0.6)" strokeWidth="2" strokeLinecap="round">
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
+                </svg>
+              </motion.div>
             </motion.div>
 
             {/* Floating label with glass effect */}
@@ -256,80 +292,78 @@ export default function Journey() {
           </div>
         </div>
 
-        {/* Mobile photos — shown below timeline on small screens with enhanced interactive styling */}
+        {/* Mobile photos — shown below timeline on small screens with outline styling */}
         <div className="grid grid-cols-2 gap-4 mt-12 lg:hidden">
           <motion.div 
-            className="relative overflow-hidden rounded-2xl"
-            style={{ border: '1.5px solid rgba(168,85,247,0.25)', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' }}
-            whileHover={{ scale: 1.05, boxShadow: '0 25px 60px rgba(168,85,247,0.3)' }}
+            className="relative"
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.div 
-              className="absolute inset-0"
-              style={{ background: 'linear-gradient(to top, rgba(168,85,247,0.15) 0%, transparent 60%)' }}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+            <img src={ameyWorking} alt="Amey working" className="w-full h-auto block rounded-2xl" />
+            <motion.div
+              className="absolute inset-0 rounded-2xl pointer-events-none"
+              style={{
+                border: '2px solid rgba(168,85,247,0.4)',
+                boxShadow: 'inset 0 0 15px rgba(168,85,247,0.1)',
+              }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
             />
-            <img src={ameyWorking} alt="Amey working" className="w-full h-auto block relative z-10" />
             <motion.div 
-              className="absolute bottom-3 left-3 right-3 z-20"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="flex items-center gap-1 mt-2"
+              initial={{ opacity: 0, x: -5 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.5 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
             >
-              <div
-                className="px-3 py-1.5 rounded-full"
-                style={{
-                  background: 'rgba(14,14,18,0.85)',
-                  border: '1px solid rgba(168,85,247,0.3)',
-                  backdropFilter: 'blur(8px)',
-                }}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(168,85,247,0.6)" strokeWidth="2" strokeLinecap="round">
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+              <p 
+                className="text-white/40 text-xs"
+                style={{ fontFamily: 'cursive, Comic Sans MS, Chalkboard SE, sans-serif' }}
               >
-                <p className="text-white/60 text-[9px] uppercase tracking-widest font-medium text-center">
-                  Deep in the code
-                </p>
-              </div>
+                Deep in the code
+              </p>
             </motion.div>
           </motion.div>
           <motion.div 
-            className="relative overflow-hidden rounded-2xl"
-            style={{ border: '1.5px solid rgba(236,72,153,0.25)', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' }}
-            whileHover={{ scale: 1.05, boxShadow: '0 25px 60px rgba(236,72,153,0.3)' }}
+            className="relative"
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.div 
-              className="absolute inset-0"
-              style={{ background: 'linear-gradient(to top, rgba(236,72,153,0.15) 0%, transparent 60%)' }}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+            <img src={ameyDog} alt="Amey with Flake" className="w-full h-auto block rounded-2xl" />
+            <motion.div
+              className="absolute inset-0 rounded-2xl pointer-events-none"
+              style={{
+                border: '2px solid rgba(236,72,153,0.4)',
+                boxShadow: 'inset 0 0 15px rgba(236,72,153,0.1)',
+              }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
             />
-            <img src={ameyDog} alt="Amey with Flake" className="w-full h-auto block relative z-10" />
             <motion.div 
-              className="absolute bottom-3 left-3 right-3 z-20"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="flex items-center gap-1 mt-2 justify-end"
+              initial={{ opacity: 0, x: 5 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.5 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
             >
-              <div
-                className="px-3 py-1.5 rounded-full"
-                style={{
-                  background: 'rgba(14,14,18,0.85)',
-                  border: '1px solid rgba(236,72,153,0.3)',
-                  backdropFilter: 'blur(8px)',
-                }}
+              <p 
+                className="text-white/40 text-xs"
+                style={{ fontFamily: 'cursive, Comic Sans MS, Chalkboard SE, sans-serif' }}
               >
-                <p className="text-white/60 text-[9px] uppercase tracking-widest font-medium text-center">
-                  With Flake
-                </p>
-              </div>
+                With Flake
+              </p>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(236,72,153,0.6)" strokeWidth="2" strokeLinecap="round">
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
             </motion.div>
           </motion.div>
         </div>

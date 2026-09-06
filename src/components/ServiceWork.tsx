@@ -236,7 +236,7 @@ export default function ServiceWork() {
   return (
     <section
       id="work"
-      className="relative py-20 md:py-28 px-5 sm:px-8 md:px-12"
+      className="relative py-12 md:py-28 px-5 sm:px-8 md:px-12"
       style={{ background: '#0C0C0C', borderRadius: '40px 40px 0 0' }}
     >
       {/* Section heading */}
