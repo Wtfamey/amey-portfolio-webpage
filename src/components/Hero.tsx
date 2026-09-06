@@ -1,6 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
 import Magnet from './Magnet';
-import MusicPlayer from './MusicPlayer';
 
 const VIDEO_URL =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_171521_25968ba2-b594-4b32-aab7-f6b69398a6fa.mp4';
@@ -164,9 +163,6 @@ export default function Hero() {
           </Magnet>
         </motion.div>
       </div>
-
-      {/* ── Music Player — centre mid-bottom ── */}
-      <MusicPlayer />
 
       {/* Scroll hint */}
       <motion.div
